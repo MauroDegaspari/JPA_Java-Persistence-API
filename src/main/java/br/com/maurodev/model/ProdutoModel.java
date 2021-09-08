@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,16 +24,21 @@ public class ProdutoModel {
 	private BigDecimal preco;
 	private LocalDate dataCadastro = LocalDate.now();
 	
+	@ManyToOne // cardinalidade
+	private CategoriaModel categoria;
+	
 	@Enumerated(EnumType.STRING) //mapeamento pelo nome do enum
-	private CategoriaEnum categoria;
+	private MarcaEnum marca;
 	
 	
-	public ProdutoModel(String nome, String descricao, BigDecimal preco, CategoriaEnum categoria) {
+	
+	
+	public ProdutoModel(String nome, String descricao, BigDecimal preco, MarcaEnum marca) {
 		super();
 		this.nome = nome;
 		this.descricao = descricao;
 		this.preco = preco;
-		this.categoria = categoria;
+		this.marca = marca;
 	}
 	
 	
@@ -67,11 +73,11 @@ public class ProdutoModel {
 	public void setDataCadastro(LocalDate dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
-	public CategoriaEnum getCategoria() {
-		return categoria;
+	public MarcaEnum getMarca() {
+		return marca;
 	}
-	public void setCategoria(CategoriaEnum categoria) {
-		this.categoria = categoria;
+	public void setMarca(MarcaEnum marcaa) {
+		this.marca = marcaa;
 	}
 	
 	
