@@ -34,6 +34,9 @@ public class ProdutoModel {
 		this.preco = preco;
 		this.categoria = categoria;
 	}
+	
+	
+	//GETTES & SETTES
 	public Long getId() {
 		return id;
 	}
