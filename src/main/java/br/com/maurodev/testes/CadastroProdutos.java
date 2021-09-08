@@ -5,16 +5,15 @@ import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 
 import br.com.maurodev.dao.ProdutoDao;
+import br.com.maurodev.model.CategoriaEnum;
 import br.com.maurodev.model.ProdutoModel;
 import br.com.maurodev.util.JPAUtil;
 
 public class CadastroProdutos {
 
 	public static void main(String[] args) {
-		ProdutoModel celular = new ProdutoModel();
-		celular.setNome("Motorola");
-		celular.setDescricao("O melhor");
-		celular.setPreco(new BigDecimal("800"));
+		ProdutoModel celular = new ProdutoModel("Motorola","O melhor",new BigDecimal("800"), CategoriaEnum.CELULARES);
+		
 	
 		
 		EntityManager em = JPAUtil.getEntityManager();
