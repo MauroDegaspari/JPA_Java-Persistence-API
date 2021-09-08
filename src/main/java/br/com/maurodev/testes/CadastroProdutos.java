@@ -3,10 +3,10 @@ package br.com.maurodev.testes;
 import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
+import br.com.maurodev.dao.ProdutoDao;
 import br.com.maurodev.model.ProdutoModel;
+import br.com.maurodev.util.JPAUtil;
 
 public class CadastroProdutos {
 
@@ -16,10 +16,13 @@ public class CadastroProdutos {
 		celular.setDescricao("O melhor");
 		celular.setPreco(new BigDecimal("800"));
 	
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("JPA");
-		EntityManager em = factory.createEntityManager();  // "EntityManager" interface para opera no banco de dados com a JPA
+		
+		EntityManager em = JPAUtil.getEntityManager();
+		ProdutoDao dao = new ProdutoDao(em);
+		
+		
 		em.getTransaction().begin();
-		em.persist(celular);
+		dao.cadastra(celular);
 		em.getTransaction().commit();
 		em.close();
 	}
